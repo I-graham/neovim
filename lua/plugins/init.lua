@@ -1,10 +1,4 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
-  },
-
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
@@ -75,7 +69,7 @@ return {
     ft = "rust",
     init = function()
       vim.g.rustfmt_autosave = 1
-      vim.g.rustfmt_options = "--config hard_tabs=true,max_width=80"
+      vim.g.rustfmt_options = "--config max_width=80"
     end,
   },
   {
@@ -97,6 +91,15 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "debugloop/telescope-undo.nvim",
+    },
+    config = function()
+      require("telescope").setup {} 
+      require("telescope").load_extension "undo"
+      vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
+    end,
   },
   {
     "folke/trouble.nvim",
@@ -162,6 +165,7 @@ return {
   },
   {
     "chentoast/marks.nvim",
+    event = "VeryLazy",
     opts = {},
   },
 }
