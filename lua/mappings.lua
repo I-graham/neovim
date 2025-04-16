@@ -7,9 +7,6 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
-vim.keymap.set("n", "<CR>", "m`o<Esc>``")
-vim.keymap.set("n", "<S-CR>", "m`O<Esc>``")
-
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -18,6 +15,13 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+vim.keymap.set({"n", "v"}, "j", "gj")
+vim.keymap.set({"n", "v"}, "gj", "j")
+vim.keymap.set({"n", "v"}, "k", "gk")
+vim.keymap.set({"n", "v"}, "gk", "k")
+
+vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<Cr>")
 
 vim.opt.clipboard = ""
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])

@@ -9,7 +9,6 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^6", -- Recommended
-    lazy = false, -- This plugin is already lazy
     ft = "rust",
     config = function()
       local mason_registry = require "mason-registry"
@@ -30,10 +29,9 @@ return {
   },
   {
     "nvim-tree/nvim-tree.lua",
-    opts = {
-      view = {
-        side = "right",
-      },
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
     },
   },
   {
@@ -93,65 +91,10 @@ return {
     tag = "0.1.8",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "debugloop/telescope-undo.nvim",
     },
     config = function()
       require("telescope").setup {}
-      require("telescope").load_extension "undo"
-      vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
     end,
-  },
-  {
-    "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
-    cmd = "Trouble",
-    keys = {
-      {
-        "<leader>xx",
-        "<cmd>Trouble diagnostics toggle<cr>",
-        desc = "Diagnostics (Trouble)",
-      },
-      {
-        "<leader>xX",
-        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-        desc = "Buffer Diagnostics (Trouble)",
-      },
-      {
-        "<leader>cs",
-        "<cmd>Trouble symbols toggle focus=false<cr>",
-        desc = "Symbols (Trouble)",
-      },
-      {
-        "<leader>cl",
-        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-        desc = "LSP Definitions / references / ... (Trouble)",
-      },
-      {
-        "<leader>xL",
-        "<cmd>Trouble loclist toggle<cr>",
-        desc = "Location List (Trouble)",
-      },
-      {
-        "<leader>xQ",
-        "<cmd>Trouble qflist toggle<cr>",
-        desc = "Quickfix List (Trouble)",
-      },
-    },
-    modes = {
-      preview_float = {
-        mode = "diagnostics",
-        preview = {
-          type = "float",
-          relative = "editor",
-          border = "rounded",
-          title = "Preview",
-          title_pos = "center",
-          position = { 0, -2 },
-          size = { width = 0.3, height = 0.3 },
-          zindex = 200,
-        },
-      },
-    },
   },
   {
     "nvim-telescope/telescope-project.nvim",
@@ -189,5 +132,26 @@ return {
         on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
       }
     end,
+  },
+  {
+    "mbbill/undotree",
+    lazy = false,
+    config = function()
+      vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+    end,
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
   },
 }
