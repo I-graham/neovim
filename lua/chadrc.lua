@@ -14,6 +14,8 @@ M.base46 = {
   -- },
 }
 
+
+
 M.term = {
   float = {
     row = 0.1,
