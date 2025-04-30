@@ -201,5 +201,8 @@ return {
   {
     "ggandor/leap.nvim",
     lazy = false,
+    opts = {
+      case_sensetive = true
+    }
   }
 }

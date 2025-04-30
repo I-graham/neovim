@@ -11,3 +11,36 @@ vim.keymap.set(
   end,
   { silent = true, buffer = bufnr }
 )
+
+vim.keymap.set(
+  "v",
+  "<Leader>dbg",
+  "S)idbg!<Esc>",
+  { 
+    remap = true,
+    desc = "Wrap selection in `dbg!`"
+  }
+)
+vim.keymap.set(
+  "n",
+  "<Leader>dbg",
+  "?dbg!<Enter>d4llds)",
+  {
+    remap = true,
+    desc = "remove surrounding `dbg!`"
+  }
+)
+
+vim.keymap.set(
+  "n",
+  "<Leader>rf",
+  "m`Bi&<Esc>``l",
+  { desc = "Add `&` before expression" }
+)
+
+vim.keymap.set(
+  "n",
+  "<Leader>dr",
+  "m`Bi*<Esc>``l",
+  { desc = "Add `&` before expression" }
+)
