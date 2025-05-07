@@ -4,6 +4,7 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+map({"n", "v", "i"}, "<C-[>", "<Esc>")
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
@@ -17,6 +18,8 @@ vim.keymap.set("n", ",", ";")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("n", "<M-J>", "<Cmd>m+1<CR>")
+vim.keymap.set("n", "<M-K>", "<Cmd>m-2<CR>")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -32,13 +35,15 @@ vim.keymap.set(
 vim.keymap.set({"n", "v"}, "j", "gj")
 vim.keymap.set({"n", "v"}, "gj", "j")
 vim.keymap.set("i", "<C-j>", "<C-o>gj")
+vim.keymap.set("n", "<C-o>", "<C-o>zz")
 
 vim.keymap.set({"n", "v"}, "k", "gk")
 vim.keymap.set({"n", "v"}, "gk", "k")
 vim.keymap.set("i", "<C-k>", "<C-o>gk")
+vim.keymap.set("n", "<C-i>", "<C-i>zz")
 
-vim.keymap.set({"n", "v"}, "<M-j>", "<cmd>cnext<CR>")
-vim.keymap.set({"n", "v"}, "<M-k>", "<cmd>cprev<CR>")
+vim.keymap.set({"n", "v"}, "<M-j>", "<cmd>cnext<CR>zz")
+vim.keymap.set({"n", "v"}, "<M-k>", "<cmd>cprev<CR>zz")
 vim.keymap.set({"n", "v"}, "<M-d>", "<cmd>lua vim.diagnostic.setqflist()<CR>", { desc = "Open diagnostics in Quickfix"})
 vim.keymap.set({"n", "v"}, "<M-r>", "<cmd>RustLsp relatedDiagnostics<CR>", { desc = "Open related diagnostics in Quickfix"})
 
@@ -64,14 +69,6 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Nvim DAP
-
-map("n", "<Leader>dbl", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Debugger step into" })
-map("n", "<Leader>dbj", "<cmd>lua require'dap'.step_over()<CR>", { desc = "Debugger step over" })
-map("n", "<Leader>dbk", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Debugger step out" })
-map("n", "<Leader>dbc", "<cmd>lua require'dap'.continue()<CR>", { desc = "Debugger continue" })
-map("n", "<Leader>dbb", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Debugger toggle breakpoint" })
-map("n", "<Leader>dbe", "<cmd>lua require'dap'.terminate()<CR>", { desc = "Debugger reset" })
-map("n", "<Leader>dbr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugger run last" })
 
 -- rustaceanvim
 map("n", "<Leader>dt", "<cmd>lua vim.cmd('RustLsp testables')<CR>", { desc = "Debugger testables" })
